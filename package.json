@@ -1,0 +1,27 @@
+{
+  "name": "lmoauth2.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.226.0",
+    "amazon-cognito-identity-js": "^6.0.1",
+    "body-parser": "^1.20.1",
+    "cognito-express": "^3.0.1",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "jwk-to-pem": "^2.0.5",
+    "nodemon": "^2.0.20",
+    "ramda": "^0.28.0",
+    "request": "^2.88.2"
+  }
+}
