@@ -9,20 +9,19 @@ const createClientForRegion = curry(
 );
 
 const createClientForDefaultRegion = createClientForRegion(null);
-const register = async ({ username, password, email }) => {
+const register = async (user) => {
     try {
         const client = createClientForDefaultRegion(CognitoIdentityProviderClient);
-        let dateTime = Date.now().toString();
         const command = new SignUpCommand({
             ClientId: process.env.CLIENT_ID,
-            Username: username,
-            Password: password,
+            Username: user.username,
+            Password: user.password,
             UserAttributes: [
-                { Name: "email", Value: email },
-                { Name: "address", Value: "dhaka" },
-                { Name: "custom:CompanyName", Value: "Test" },
-                { Name: "custom:MCDOT", Value: "1234567" },
-                { Name: "updated_at", Value: dateTime }
+                { Name: "email", Value: user.email },
+                { Name: "address", Value: user.address },
+                { Name: "custom:CompanyName", Value: user.companyName },
+                { Name: "custom:MCDOT", Value: user.mc },
+                { Name: "updated_at", Value: Date.now().toString() }
             ],
         });
         let res = await client.send(command);
@@ -31,6 +30,6 @@ const register = async ({ username, password, email }) => {
         return { err: error }
     }
 };
-module.exports ={
+module.exports = {
     register
 }

@@ -23,20 +23,20 @@ const validate = async (req, res, next) => {
             if (!decodedJwt) {
                 console.log("Not a valid JWT token");
                 res.status(401);
-                return res.send("Invalid token");
+                return res.send({error: "Invalid token"});
             }
             var kid = decodedJwt.header.kid;
             var pem = pems[kid];
             if (!pem) {
                 console.log('Invalid token');
                 res.status(401);
-                return res.send("Invalid token");
+                return res.send({error: "Invalid token"});
             }
             jwt.verify(token, pem, function (err, payload) {
                 if (err) {
                     console.log("Invalid Token.");
                     res.status(401);
-                    return res.send("Invalid token");
+                    return res.send({error: "Invalid token"});
                 } else {
                     console.log("Valid Token.");
                     return next();
